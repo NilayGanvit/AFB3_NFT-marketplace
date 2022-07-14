@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps }) {
       <a className="mr-6 text-pink-500">Sell Assets
       </a>
     </Link>
+    <Link href="/create item">
+      <a className="mr-6 text-pink-500">My Assets
+      </a>
+    </Link>
     <Link href="/create dashboard">
       <a className="mr-6 text-pink-500">Dashboard
       </a>
