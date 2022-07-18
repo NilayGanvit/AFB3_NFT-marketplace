@@ -18,7 +18,7 @@ describe("NFTMarket", function () {
 
   const [_,buyerAddress] = await ethers.getSigners()
 
-  await nftMarketplace.connect(buyerAddress).create.resell(1,autionPrice,{value:listingPrice})
+  await nftMarketplace.connect(buyerAddress).create.resellToken(1,autionPrice,{value:listingPrice})
 
    items = await nftMarketplace.fetchMarketItems()
    items = await Promise.all(items.map(async i => {
