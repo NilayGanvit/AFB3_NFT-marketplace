@@ -17,7 +17,7 @@ export default function Home() {
   },[])
   async function loadNFTs(){
     const provider = new ethers.providers.JsonRpcProvider()
-    const contract = new ether.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)
+    const contract = new ethers.Contract(marketplaceAdress, NFTMarketplace.abi ,provider)
     const data = await contract.fetchMarketItems()
     
     const items = await Promise.all(data.map(async i => {
