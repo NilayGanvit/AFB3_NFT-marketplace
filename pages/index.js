@@ -4,7 +4,7 @@ import axios from 'axios'
 import Web3Modal from 'web3modal'
 
 import {
-  marketplaceAdress
+  marketplaceAddress
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
@@ -16,12 +16,12 @@ export default function Home() {
     loadNFTs()
   },[])
   async function loadNFTs(){
-    const provider = new ethers.providers.JsonRpcProvider()
-    const contract = new ethers.Contract(marketplaceAdress, NFTMarketplace.abi ,provider)
+    const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com/")
+    const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)
     const data = await contract.fetchMarketItems()
     
     const items = await Promise.all(data.map(async i => {
-      const tokenUri = await tokenContract.tokenUri(i.tokenId)
+      const tokenUri = await tokenContract.tokenURI(i.tokenId)
       const meta = await axios.get(tokenUri)
       let price = ethers.utils.formatUnits(i.price.toString(),'ether')
      let item = {
@@ -41,10 +41,10 @@ export default function Home() {
 
     async function buyNft(nft){
       const web3modal = new Web3Modal()
-      const connction = await web3modal.connect()
+      const connection = await web3modal.connect(Networks.Mumbai.url)
       const provider = new ethers.providers.Web3Provider(connection)
       const signer = provider.getSigner()
-      const contract = new ether.Contract(marketplaceAddress,NFTMarketplace.abi,signer)
+      const contract = new ethers.Contract(marketplaceAddress,NFTMarketplace.abi,signer)
 
       const price = ether.utils.parseUnits(nft.price.toString(),'ether')
       const transaction = await contract.createMarketSale(nft.tokenId,{
