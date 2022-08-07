@@ -1,10 +1,11 @@
 import {ethers} from 'ethers'
-import { useEffect , useState } from 'react'
-import axios from 'axios'
+import {useState } from 'react'
 import Web3Modal from 'web3modal'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
-const client = ipfsHttpClient('')
+
+const client = ipfsHttpClient('https://api.pinata.cloud/psa')
+
 import {
     marketplaceAddress
 } from '../config'
@@ -13,34 +14,35 @@ import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketP
 
 export default function CreateItem() {
     const [fileUrl,setFileUrl] = useState(null)
-    const [formInput,UpdateFormInput] = useState({price :' ',name: '',description : ''})
+    const [formInput,UpdateFormInput] = useState({price :'',name: '',description : ''})
     const router = useRouter()
 
     async function onChange(e){
         const file = e.target.files[0]
         try{
-            const added = await client.add(
+            const added  = await client.add(
             file,
             {    
             progress: (prog) => console.log(`received :${prog}`)
         }
         )
-        const url = ``
+        const {cid} = await ipfsHttpClient.add(file)
+        const url = `https://gateway.pinata.cloud/ipfs/${cid.string}`
         setFileUrl(url)
     } catch (error){
         console.log('Error uploading file ',error)
     }
 }
 async function uploadToIPFS() {
-    const{name, descrption, price} = formInput
-    if(!name || ! description || !price || !fileUrl) return 
+    const{name, description, price} = formInput
+    if(!name || !description || !price || !fileUrl) return 
     const data = JSON.stringify({
         name,description,image : fileUrl
     })
 }
 try {
     const added = await client.add(data)
-    const url = `https://ipfs.infura.io/ipfs/${added.path}`
+    const url = `https://api.pinata.cloud/psa/${added.path}`
     /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
     return url
   } catch (error) {
@@ -66,14 +68,21 @@ async function listNFTForSale() {
   router.push('/')
 }
 
-retrun (
+return (
     <div className="flex jsutify-center" >
-     <div className="w-1-2 flex flex-col pb-12">
+     <div className="w-1/2 flex flex-col pb-12">
+    
         <input 
         placeholder="Asset Name" 
         className="mt-2 border rounded p-4"
         onChange={e=>updateFormat({...formInput,name: e.target.value})}/>
-
+    
+      <textarea
+      placeholder="Asset Description"
+      className="mt-2 border rounded p-4"
+      onChange={e => updateFormInput({...formInput ,description : e.target.value})}
+      />
+    
         <input placeholder="Asset Price in Eth"
         className="mt-2 border rounded p-4"
         onChange={e=>updateFormInput({...formInput,price: e.target.value})}/>

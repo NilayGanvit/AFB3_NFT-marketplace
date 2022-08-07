@@ -14,15 +14,15 @@ function MyApp({ Component, pageProps }) {
       <a className="mr-6 text-white">Home
       </a>
     </Link>
-    <Link href="/create item">
+    <Link href="/create-nft">
       <a className="mr-6 text-white">Sell Assets
       </a>
     </Link>
-    <Link href="/create item">
+    <Link href="/my-nfts">
       <a className="mr-6 text-white">My Assets
       </a>
     </Link>
-    <Link href="/create dashboard">
+    <Link href="/dashboard">
       <a className="mr-6 text-white">Dashboard
       </a>
     </Link>

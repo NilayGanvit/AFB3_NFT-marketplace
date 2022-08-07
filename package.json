@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.0",
+    "@pinata/sdk": "^1.1.26",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "ipfs-http-client": "^57.0.3",
     "next": "12.2.0",
+    "pinata-ipfs-http-client": "^42.0.2",
     "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
