@@ -16,7 +16,7 @@ export default function Home() {
     loadNFTs()
   },[])
   async function loadNFTs(){
-    const provider = new ethers.providers.JsonRpcProvider("https://rpc-mumbai.maticvigil.com/")
+    const provider = new ethers.providers.JsonRpcProvider()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)
     const data = await contract.fetchMarketItems()
     
@@ -41,7 +41,7 @@ export default function Home() {
 
     async function buyNft(nft){
       const web3modal = new Web3Modal()
-      const connection = await web3modal.connect(Networks.Mumbai.url)
+      const connection = await web3modal.connect(Network.Mumbai.url)
       const provider = new ethers.providers.Web3Provider(connection)
       const signer = provider.getSigner()
       const contract = new ethers.Contract(marketplaceAddress,NFTMarketplace.abi,signer)

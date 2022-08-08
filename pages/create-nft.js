@@ -4,7 +4,7 @@ import Web3Modal from 'web3modal'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 
-const client = ipfsHttpClient('https://api.pinata.cloud/psa')
+const client = ipfsHttpClient('https://ipfs.infura.io.5001/api/v0')
 
 import {
     marketplaceAddress
@@ -26,8 +26,7 @@ export default function CreateItem() {
             progress: (prog) => console.log(`received :${prog}`)
         }
         )
-        const {cid} = await ipfsHttpClient.add(file)
-        const url = `https://gateway.pinata.cloud/ipfs/${cid.string}`
+       const url = `https://ipfs.infura.io/ipfs/${added.path}`
         setFileUrl(url)
     } catch (error){
         console.log('Error uploading file ',error)
@@ -42,7 +41,7 @@ async function uploadToIPFS() {
 }
 try {
     const added = await client.add(data)
-    const url = `https://api.pinata.cloud/psa/${added.path}`
+    const url = `https://ipfs.infura.io/ipfs/${added.path}`
     /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
     return url
   } catch (error) {
