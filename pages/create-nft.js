@@ -71,17 +71,17 @@ return (
         <input 
         placeholder="Asset Name" 
         className="mt-2 border rounded p-4"
-        onChange={e=>updateFormat({...formInput,name: e.target.value})}/>
+        onChange={e=>UpdateFormInput({...formInput,name: e.target.value})}/>
     
       <textarea
       placeholder="Asset Description"
       className="mt-2 border rounded p-4"
-      onChange={e => updateFormInput({...formInput ,description : e.target.value})}
+      onChange={e => UpdateFormInput({...formInput ,description : e.target.value})}
       />
     
         <input placeholder="Asset Price in Eth"
         className="mt-2 border rounded p-4"
-        onChange={e=>updateFormInput({...formInput,price: e.target.value})}/>
+        onChange={e=>UpdateFormInput({...formInput,price: e.target.value})}/>
         <input
         type = "file"
         name = "Asset"
