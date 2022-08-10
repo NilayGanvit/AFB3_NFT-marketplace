@@ -6,9 +6,8 @@ import { useRouter } from 'next/router'
 import {
     marketplaceAddress
 } from '../config'
-import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 
-const client = ipfsHttpClient({ipld: 'https://ipfs.infura.io.5001/api/v0'})
+import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 
 export default function CreateItem() {
     const [fileUrl,setFileUrl] = useState(null)
@@ -36,22 +35,23 @@ export default function CreateItem() {
     const data = JSON.stringify({
         name,description,image : fileUrl
     })
-    try {
-        const added = await client.add(data)
-        const url = `https://ipfs.infura.io/ipfs/${added.path}`
-        /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
-        return url
-    } catch (error) {
-        console.log('Error uploading file: ', error)
-    }  
-    }
 
-    async function listNFTForSale() {
-    const url = await uploadToIPFS()
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
-    const signer = provider.getSigner()
+try {
+    const added = await client.add(data)
+    const url = `https://ipfs.infura.io/ipfs/${added.path}`
+    /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
+    return url
+  } catch (error) {
+    console.log('Error uploading file: ', error)
+  }  
+   }
+
+async function listNFTForSale() {
+  const url = await uploadToIPFS()
+  const web3Modal = new Web3Modal()
+  const connection = await web3Modal.connect()
+  const provider = new ethers.providers.Web3Provider(connection)
+  const signer = provider.getSigner()
 
     /* create the NFT */
     const price = ethers.utils.parseUnits(formInput.price, 'ether')
