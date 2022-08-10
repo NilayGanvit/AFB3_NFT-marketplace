@@ -12,7 +12,7 @@ import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketP
 
 export default function CeatorDashboard() {
     const [nfts, setNfts] = useState([])
-    const [loadingState, setLoadingState] = useState('not-loaded')
+    const [loadingState, setLoadingState] = useState(true)
     useEffect(() => {
       loadNFTs()
     }, [])
@@ -45,7 +45,8 @@ export default function CeatorDashboard() {
       setNfts(items)
       setLoadingState('loaded') 
     }
-    if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)
+    if (!loadingState && !nfts.length) 
+    return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)
     return (
       <div>
         <div className="p-4">

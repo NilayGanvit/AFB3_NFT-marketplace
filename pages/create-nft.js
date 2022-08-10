@@ -3,15 +3,12 @@ import {useState } from 'react'
 import Web3Modal from 'web3modal'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
-
-const client = ipfsHttpClient('https://ipfs.infura.io.5001/api/v0')
-
 import {
     marketplaceAddress
 } from '../config'
-
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 
+const client = ipfsHttpClient({ipld :'https://ipfs.infura.io.5001/api/v0'})
 export default function CreateItem() {
     const [fileUrl,setFileUrl] = useState(null)
     const [formInput,UpdateFormInput] = useState({price :'',name: '',description : ''})
@@ -38,9 +35,11 @@ async function uploadToIPFS() {
     const data = JSON.stringify({
         name,description,image : fileUrl
     })
-}
+
 try {
-    const added = await client.add(data)
+    const added = await client.add(data).catch( error => {
+        // handle error
+        })
     const url = `https://ipfs.infura.io/ipfs/${added.path}`
     /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
     return url
@@ -102,3 +101,4 @@ return (
      </div>
     </div>
 )
+    }
