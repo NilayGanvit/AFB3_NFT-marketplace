@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
       <a className="mr-6 text-pink-500">Sell Assets
       </a>
     </Link>
-    <Link href="/my-nfts">
+    <Link href="/my-nft">
       <a className="mr-6 text-pink-500">My Assets
       </a>
     </Link>
