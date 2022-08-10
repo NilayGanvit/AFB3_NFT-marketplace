@@ -50,7 +50,8 @@ async function listNFTForSale() {
   const url = await uploadToIPFS()
   const web3Modal = new Web3Modal()
   const connection = await web3Modal.connect()
-  const provider = new ethers.providers.Web3Provider(connection)
+//   const provider = new ethers.providers.Web3Provider(connection)
+    const provider = new ethers.providers.Web3Provider(web3.currentProvider)
   const signer = provider.getSigner()
 
     /* create the NFT */

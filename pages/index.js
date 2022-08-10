@@ -8,6 +8,10 @@ import {
 } from '../config'
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
+// const provider = new ethers.providers.JsonRpcProvider('https://rpc-mainnet.maticvigil.com')
+// const provider = new ethers.providers.JsonRpcProvider('https://rpc-mainnet.maticvigil.com')
+const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/XwH83kPhl2fcLEX8J0yLq2b1aXHryKf5/getNFTs/`)
+
 
 export default function Home() {
   const [nfts, setnfts] = useState([])
@@ -16,7 +20,7 @@ export default function Home() {
     loadNFTs()
   },[])
   async function loadNFTs(){
-    const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545")
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)
     const data = await contract.fetchMarketItems()
     
