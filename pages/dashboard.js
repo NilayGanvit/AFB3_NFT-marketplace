@@ -43,10 +43,12 @@ export default function CeatorDashboard() {
       }))
   
       setNfts(items)
-      setLoadingState('loaded') 
+      setLoadingState(false) 
     }
+
     if (!loadingState && !nfts.length) 
     return (<h1 className="py-10 px-20 text-3xl">No NFTs listed</h1>)
+
     return (
       <div>
         <div className="p-4">
