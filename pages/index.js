@@ -9,8 +9,6 @@ import {
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 // const provider = new ethers.providers.JsonRpcProvider('https://rpc-mainnet.maticvigil.com')
-// const provider = new ethers.providers.JsonRpcProvider('https://rpc-mainnet.maticvigil.com')
-const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/XwH83kPhl2fcLEX8J0yLq2b1aXHryKf5/getNFTs/`)
 
 
 export default function Home() {
@@ -20,7 +18,12 @@ export default function Home() {
     loadNFTs()
   },[])
   async function loadNFTs(){
-    const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545")
+    // const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545")
+    // const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/XwH83kPhl2fcLEX8J0yLq2b1aXHryKf5/getNFTs/`)
+    // const provider = new ethers.providers.JsonRpcProvider()
+
+
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)
     const data = await contract.fetchMarketItems()
     
@@ -28,7 +31,7 @@ export default function Home() {
       const tokenUri = await contract.tokenURI(i.tokenId)
       const meta = await axios.get(tokenUri)
       let price = ethers.utils.formatUnits(i.price.toString(),'ether')
-     let item = {
+      let item = {
       price,
       tokenId: i.tokenId.toNumber(),
       seller: i.seller,
@@ -52,7 +55,7 @@ export default function Home() {
 
       const price = ethers.utils.parseUnits(nft.price.toString(),'ether')
       const transaction = await contract.createMarketSale(nft.tokenId,{
-   value:price
+      value:price
     })
     await transaction.wait()
     loadNFTs()

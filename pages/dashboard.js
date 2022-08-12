@@ -18,7 +18,7 @@ export default function CeatorDashboard() {
     }, [])
     async function loadNFTs() {
       const web3Modal = new Web3Modal({
-        network: 'Mumbai',
+        network: 'mainnet',
         cacheProvider: true,
       })
       const connection = await web3Modal.connect()

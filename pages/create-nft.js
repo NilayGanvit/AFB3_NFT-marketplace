@@ -9,6 +9,26 @@ import {
 
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 
+const projectId = '2DGEwrRDQgRw3kyeW3yZtse6Uxw';   // <---------- your Infura Project ID
+
+const projectSecret = '378ebbb35c1a15af3578e3cef1dc7f80';  // <---------- your Infura Secret
+// (for security concerns, consider saving these values in .env files)
+
+const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+const client = ipfsHttpClient({
+    host: 'ipfs.infura.io',
+    port: 5001,
+    protocol: 'https',
+    headers: {
+        authorization: auth,
+    },
+});
+
+// const client = ipfsHttpClient('https://ipfs.infura.io:5001')
+
+
+
 export default function CreateItem() {
     const [fileUrl,setFileUrl] = useState(null)
     const [formInput,UpdateFormInput] = useState({price :'',name: '',description : ''})
@@ -23,7 +43,9 @@ export default function CreateItem() {
             progress: (prog) => console.log(`received :${prog}`)
         }
         )
-       const url = `https://ipfs.infura.io/ipfs/${added.path}`
+        console.log(added);
+       const url = `https://afb3.infura.io/ipfs/${added.path}`
+    
         setFileUrl(url)
     } catch (error){
         console.log('Error uploading file ',error)
@@ -38,7 +60,7 @@ export default function CreateItem() {
 
 try {
     const added = await client.add(data)
-    const url = `https://ipfs.infura.io/ipfs/${added.path}`
+    const url = `https://afb3.infura.io/ipfs/${added.path}`
     /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
     return url
   } catch (error) {
@@ -48,12 +70,13 @@ try {
 
 async function listNFTForSale() {
   const url = await uploadToIPFS()
-  const web3Modal = new Web3Modal()
+	const web3Modal = new Web3Modal()
+  // const web3Modal = window.Web3Modal.default()
   const connection = await web3Modal.connect()
-//   const provider = new ethers.providers.Web3Provider(connection)
-    // const provider = new ethers.providers.Web3Provider(web3.currentProvider)
-    window.ethereum
-//   const provider = new ethers.providers.Web3Provider(connection)
+  console.log(connection);
+  const provider = new ethers.providers.Web3Provider(connection)
+  // const provider = new ethers.providers.Web3Provider(web3.currentProvider)
+  // const provider = new ethers.providers.Web3Provider(connection)
 
   const signer = provider.getSigner()
 
