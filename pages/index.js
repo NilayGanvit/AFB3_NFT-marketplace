@@ -19,9 +19,9 @@ export default function Home() {
   },[])
   async function loadNFTs(){
     // const provider = new ethers.providers.JsonRpcProvider("https://data-seed-prebsc-1-s1.binance.org:8545")
-    // const provider = new ethers.providers.JsonRpcProvider()
-    const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/XwH83kPhl2fcLEX8J0yLq2b1aXHryKf5/getNFTs/`)
-    // const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider()
+    // const provider = new ethers.providers.JsonRpcProvider(`https://polygon-mumbai.g.alchemy.com/v2/XwH83kPhl2fcLEX8J0yLq2b1aXHryKf5/getNFTs/`)
+    // const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/225a2a053f304e48b8be1bc21f1728c2")
 
 
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi ,provider)

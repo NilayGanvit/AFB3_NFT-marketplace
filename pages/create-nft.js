@@ -44,7 +44,7 @@ export default function CreateItem() {
         }
         )
         console.log(added);
-       const url = `https://afb3.infura.io/ipfs/${added.path}`
+       const url = `https://soc.infura-ipfs.io/ipfs/${added.path}`
     
         setFileUrl(url)
     } catch (error){
@@ -60,7 +60,7 @@ export default function CreateItem() {
 
 try {
     const added = await client.add(data)
-    const url = `https://afb3.infura.io/ipfs/${added.path}`
+    const url = `https://soc.infura-ipfs.io/ipfs/${added.path}`
     /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
     return url
   } catch (error) {
