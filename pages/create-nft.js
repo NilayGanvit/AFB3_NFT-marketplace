@@ -120,7 +120,7 @@ return (
                 <img className="rounded mt-4" width="350" src={fileUrl} />
             )
         }
-        <button onClick={listNFTForSale} className="font-bold mt-4 bg-blue-700 text-white rounded p-4 shadow-lg">
+        <button onClick={listNFTForSale} className="font-bold mt-4 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white rounded p-4 shadow-lg">
             Create NFT
         </button>
      </div>

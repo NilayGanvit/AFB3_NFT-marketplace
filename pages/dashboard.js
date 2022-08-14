@@ -52,7 +52,7 @@ export default function CeatorDashboard() {
     return (
       <div>
         <div className="p-4">
-          <h2 className="text-2xl py-2">Items Listed</h2>
+          <h2 className="text-3xl font-bold py-2">Items Listed</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {
               nfts.map((nft, i) => (
