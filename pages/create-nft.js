@@ -106,7 +106,7 @@ return (
       onChange={e => UpdateFormInput({...formInput ,description : e.target.value})}
       />
     
-        <input placeholder="Asset Price in Eth"
+        <input placeholder="Asset Price in MATIC"
         className="mt-2 border rounded p-4"
         onChange={e=>UpdateFormInput({...formInput,price: e.target.value})}/>
         <input
