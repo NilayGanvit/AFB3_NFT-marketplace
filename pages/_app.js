@@ -5,7 +5,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
      <div>
-    <nav className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  border-b p-6">
+    <nav className="bg-blue-900  border-b p-6">
     <p className="text-4xl text-white font-bold">NFT BAZAAR</p>
     <div className="flex mt-4">
     <Link href="/">

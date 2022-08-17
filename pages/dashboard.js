@@ -51,14 +51,14 @@ export default function CeatorDashboard() {
 
     return (
       <div>
-        <div className="p-4">
+        <div className="p-4 bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500">
           <h2 className="text-3xl font-bold py-2">Items Listed</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {
               nfts.map((nft, i) => (
                 <div key={i} className="border shadow rounded-xl overflow-hidden">
-                  <img src={nft.image} className="rounded" />
-                  <div className="p-4 bg-black">
+                  <img className="max-h-64 min-w-full rounded" src={nft.image} />
+                  <div className="p-4 min-h-full bg-black">
                     <p className="text-2xl font-bold text-white">Price - {nft.price} MATIC</p>
                   </div>
                 </div>

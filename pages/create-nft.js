@@ -16,6 +16,7 @@ const projectSecret = '378ebbb35c1a15af3578e3cef1dc7f80';  // <---------- your I
 
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 
+// Providing IPFS API To HTTP Client
 const client = ipfsHttpClient({
     host: 'ipfs.infura.io',
     port: 5001,
