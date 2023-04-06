@@ -1,6 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
+const env = require("dotenv");
 
-const privateKey1 = "c0b0de7c9160a7509758aa1ac1a618885056f8f82de0443d9685fc07a0711b00"
+const privateKey1 = process.env.privateKey1;
 module.exports = {
   defaultNetwork : "Mumbai",
   networks : {

@@ -9,13 +9,13 @@ import {
 // const env = require("dotenv");
 import NFTMarketplace from '../artifacts/contracts/NFTMarketPlace.sol/NFTMarketPlace.json'
 
-// const projectId = '2DGEwrRDQgRw3kyeW3yZtse6Uxw';   // <---------- your Infura Project ID
+const projectId = '2DGEwrRDQgRw3kyeW3yZtse6Uxw';   // <---------- your Infura Project ID
 
-// const projectSecret = '378ebbb35c1a15af3578e3cef1dc7f80';  // <---------- your Infura Secret
+const projectSecret = '378ebbb35c1a15af3578e3cef1dc7f80';  // <---------- your Infura Secret
 // (for security concerns, consider saving these values in .env files)
 
-const projectId = process.env.project_Id;
-const projectSecret = process.env.project_Secret;
+// const projectId = process.env.project_Id;
+// const projectSecret = process.env.project_Secret;
 console.log(projectId +" "+projectSecret + " "+ 1 + process.env.name);
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 
@@ -45,7 +45,7 @@ export default function CreateItem() {
         try{
             const added  = await client.add(
             file,
-            {    
+            {   
             progress: (prog) => console.log(`received :${prog}`)
         }
         )
