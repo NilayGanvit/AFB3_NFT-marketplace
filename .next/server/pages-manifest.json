@@ -1,12 +1,12 @@
 {
+  "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/api/hello": "pages/api/hello.js",
+  "/create-nft": "pages/create-nft.html",
   "/dashboard": "pages/dashboard.html",
   "/": "pages/index.html",
-  "/create-nft": "pages/create-nft.html",
   "/my-nft": "pages/my-nft.html",
   "/resell-nft": "pages/resell-nft.html",
-  "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }
