@@ -10,7 +10,7 @@ cd polygon-ethereum-nextjs-marketplace
 # install using NPM or Yarn
 npm install
 
-# or
+# or 
 
 yarn
 ```
